@@ -21,6 +21,7 @@
     "mongoose": "~4.1.8",
     "morgan": "~1.5.3",
     "passport": "~0.2.0",
+    "passport-ldapauth": "^0.5.0",
     "passport-local": "~0.1.6",
     "underscore": "^1.6.0"
   },

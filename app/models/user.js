@@ -6,23 +6,13 @@ var Schema = mongoose.Schema;
 var bcrypt = require('bcryptjs');
 var SALT_WORK_FACTOR = 10;
 
-/**
- * User Schema
- *
- */
 var UserSchema = new Schema({
 
   local: {
     email: String,
     password: String,
-  },
-
-  facebook: {
-    id: String,
-    name: String,
-    email: String,
-    acessToken: String,
   }
+
 });
 
 // Add toJSON option to transform document before returnig the result
@@ -44,6 +34,7 @@ UserSchema.options.toJSON = {
     delete ret.__v;
   }
 };
+
 
 // Pre-save hook for password validation and hashing
 UserSchema.pre('save', function(next){

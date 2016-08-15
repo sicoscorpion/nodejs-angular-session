@@ -2,6 +2,7 @@
 'use strict';
 
 var passport = require('passport');
+var LdapStrategy = require('passport-ldapauth');
 var User = require('../models/user');
 
 
@@ -52,6 +53,19 @@ function signup(req, res, next) {
       req.logIn(user, function (err) {
         return res.send(user.toJSON());
       });
+    });
+  });
+}
+
+function ldapSignin(req, res, next) {
+  passport.authenticate('ldapauth', function(err, user, info) {
+    if (err) { return next(err); }
+    if (!user) {
+      return res.send(401).send({ success: false, message: 'authentication failed!' });
+    }
+    req.logIn(user, function(err) {
+      if (err) { return next(err); }
+      return res.send(user.toJSON());
     });
   });
 }
