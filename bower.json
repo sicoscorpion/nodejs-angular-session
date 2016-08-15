@@ -1,0 +1,22 @@
+{
+  "name": "nodejs-angular-session",
+  "version": "0.0.0",
+  "authors": [
+    "Sico Scorpion"
+  ],
+  "license": "WTFPL",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-bootstrap": "~0.10.0",
+    "bootstrap-css-only": "~3.1.1",
+    "angular": "~1.2.15",
+    "angular-ui-router": "^0.3.1"
+  }
+}

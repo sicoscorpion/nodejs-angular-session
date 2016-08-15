@@ -1,0 +1,13 @@
+
+logs
+*.log
+pids
+*.pid
+*.seed
+lib-cov
+coverage
+# Compiled binary addons (http://nodejs.org/api/addons.html)
+build/Release
+node_modules
+public/bower_components
+.sass-cache
