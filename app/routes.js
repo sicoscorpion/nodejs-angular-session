@@ -20,6 +20,9 @@ module.exports = function (app) {
   // check if current user is signed in
   app.get('/signedin', authCtrl.checkSignin);
 
+  // ldap sign in
+  app.post('/ldapsignin', authCtrl.ldapSignin);
+
   // serve index.html for all other route
   app.all('/*', function (req, res) { res.render('index'); });
 };

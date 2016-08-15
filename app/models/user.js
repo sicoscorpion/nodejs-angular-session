@@ -9,8 +9,15 @@ var SALT_WORK_FACTOR = 10;
 var UserSchema = new Schema({
 
   local: {
+    username: String,
     email: String,
     password: String,
+  },
+
+  ldap: {
+    username: String,
+    email: String,
+    uid: String
   }
 
 });

@@ -2,6 +2,7 @@
 'use strict';
 
 var LocalStrategy = require('passport-local').Strategy;
+var LdapStrategy = require('passport-ldapauth');
 var User = require('../app/models/user');
 
 module.exports = function (passport, config) {
@@ -38,6 +39,36 @@ module.exports = function (passport, config) {
         }
         return done(null, user);
       });
+    });
+  }));
+
+  passport.use(new LdapStrategy({
+    server: {
+      url: 'ldap://ldap.forumsys.com:389',
+      bindDn: 'cn=read-only-admin,dc=example,dc=com',
+      bindCredentials: 'password',
+      searchBase: 'dc=example,dc=com',
+      searchFilter: '(uid={{username}})'
+    }
+  },
+  function(profile, done) {
+    User.findOne({'ldap.uid': profile.uid}, function (err, user) {
+
+      if (user) { return done(null, user); }
+      if (!user) {
+
+        // create a new user
+        user = new User();
+
+        user.ldap.uid = profile.uid;
+        user.ldap.username = profile.cn;
+        user.ldap.email = profile.mail;
+
+        user.save(function (err) {
+          if (err) { return done(err); }
+          return done(null, user);
+        });
+      }
     });
   }));
 

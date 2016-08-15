@@ -22,6 +22,7 @@ function signin(req, res, next) {
 
 function signup(req, res, next) {
 
+  var username = req.body.username;
   var email = req.body.email;
   var password = req.body.password;
 
@@ -45,6 +46,7 @@ function signup(req, res, next) {
     user = new User();
     user.local.email = email;
     user.local.password = password;
+    user.local.username = username;
 
     user.save(function (err, user) {
       if (err) { return next(err); }
@@ -57,6 +59,7 @@ function signup(req, res, next) {
   });
 }
 
+// signin using ldap-strategy
 function ldapSignin(req, res, next) {
   passport.authenticate('ldapauth', function(err, user, info) {
     if (err) { return next(err); }
@@ -67,7 +70,7 @@ function ldapSignin(req, res, next) {
       if (err) { return next(err); }
       return res.send(user.toJSON());
     });
-  });
+  })(req, res, next);
 }
 
 function signout(req, res) {
@@ -82,6 +85,7 @@ function checkSignin(req, res) {
 
 // public functions and variables
 exports.signin = signin;
+exports.ldapSignin = ldapSignin;
 exports.signup = signup;
 exports.signout = signout;
 exports.checkSignin = checkSignin;

@@ -30,11 +30,11 @@ module.exports = function (app, config, passport) {
     var helmet = require('helmet');
     var crossdomain = require('helmet-crossdomain');
 
-    app.use(helmet({
-      frameguard: {
-        action: 'deny'
-      }
-    }));
+    // app.use(helmet({
+    //   frameguard: {
+    //     action: 'deny'
+    //   }
+    // }));
 
     app.use(helmet.xssFilter())
     app.disable('x-powered-by');

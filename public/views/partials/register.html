@@ -5,6 +5,14 @@
   <form name="signupForm" novalidate ng-submit="signup();">
     <input type="hidden" name="_csrf" value="{{tokenValue}}"/>
 
+    <label>Username: </label>
+    <input name="username"
+           class="form-control"
+           type="username"
+           ng-model="signupData.username"
+           placeholder="Username"
+           required>
+
     <label>Email: </label>
     <input name="email"
            class="form-control"

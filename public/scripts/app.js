@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('nodejsAngularSession', ['ui.router'])
+angular.module('nodejsAngularSession', ['ui.router', 'ui.bootstrap'])
 .config(['$stateProvider','$urlRouterProvider', '$locationProvider', '$httpProvider', function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
 
   var checkSignin = function ($q, $timeout, $http, $state, $rootScope) {
