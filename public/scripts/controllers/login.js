@@ -5,9 +5,9 @@ angular.module('nodejsAngularSession')
   init();
 
   $scope.tokenValue = $csrf;
-  $scope.signin = function () {
+  $scope.signin = function (method) {
     $http
-    .post('/signin', $scope.signinData)
+    .post('/'+method, $scope.signinData)
     .success(function (data, status, headers, config) {
       $state.go('user.home');
     })
@@ -20,21 +20,7 @@ angular.module('nodejsAngularSession')
       }
     });
   };
-  $scope.ldapsignin = function () {
-    $http
-    .post('/ldapsignin', $scope.signinData)
-    .success(function (data, status, headers, config) {
-      $state.go('user.home');
-    })
-    .error(function (data, status, headers, config) {
-      $scope.loginForm.serverError = {
-        message : 'Error: Attempt failed'
-      };
-      if (data.message) {
-        $scope.loginForm.serverError.message = data.message;
-      }
-    });
-  };
+
   $scope.tabs = [{
     slug: 'signin',
     title: "Local SignIn",

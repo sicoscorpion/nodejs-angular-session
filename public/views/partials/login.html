@@ -6,7 +6,7 @@
   <tab ng-repeat="tab in tabs" heading="{{tab.title}}" active="tab.active" select="onTabSelected(tab.slug)">
     <div  class="well center-block" style="width: 500px">
       <h2>Please Sign In</h2>
-      <form ng-if="tab.slug == 'signin'" name="loginForm" novalidate ng-submit="signin();">
+      <form ng-if="tab.slug == 'signin'" name="loginForm" novalidate ng-submit="signin('signin');">
         <input type="hidden" name="_csrf" value="{{tokenValue}}"/>
         <label>Email: </label>
         <input name="email"
@@ -42,7 +42,7 @@
                value="Sign In"
                ng-disabled="loginForm.$invalid">
       </form>
-      <form ng-if="tab.slug == 'ldapsignin'" name="loginForm" novalidate ng-submit="ldapsignin();">
+      <form ng-if="tab.slug == 'ldapsignin'" name="loginForm" novalidate ng-submit="signin('ldapsignin');">
         <input type="hidden" name="_csrf" value="{{tokenValue}}"/>
         <label>Username: </label>
         <input name="username"
