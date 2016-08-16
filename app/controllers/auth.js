@@ -64,7 +64,7 @@ function ldapSignin(req, res, next) {
   passport.authenticate('ldapauth', function(err, user, info) {
     if (err) { return next(err); }
     if (!user) {
-      return res.send(401).send({ success: false, message: 'authentication failed!' });
+      return res.status(401).send({ success: false, message: 'authentication failed!' });
     }
     req.logIn(user, function(err) {
       if (err) { return next(err); }
@@ -75,6 +75,7 @@ function ldapSignin(req, res, next) {
 
 function signout(req, res) {
   req.logout();
+  req.session = null;
   res.status(200).send({success: true, message: "siginout successfull"});
 }
 

@@ -61,8 +61,11 @@ module.exports = function (app, config, passport) {
     // setup for cookie based session
     app.use(cookieSession({
         secret: "Sa7fToFGraIes6AJ",
-        cookie: { maxAge: 60000 },
-        httpOnly: true
+        cookie: {
+            maxAge: 60000,
+            httpOnly: true,
+            secure: true
+        },
     }));
     app.use(passport.initialize());
     app.use(passport.session());
